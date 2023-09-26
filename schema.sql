@@ -9,6 +9,8 @@ CREATE TABLE animals (
     neutered BOOLEAN,
     weight_kg DECIMAL
 (5,2),
+PRIMARY KEY
+(id)
 );
 
 /* Add the species column of the table */
