@@ -109,3 +109,49 @@ BEGIN;
         FROM animals
         WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
         GROUP BY species;
+
+
+        /* Write queries to answer the requirements based on the instruction. */
+
+        SELECT animals.name, species.name AS species
+        FROM animals
+            JOIN species ON animals.species_id = species.id
+            JOIN owners ON animals.owner_id = owners.id
+        WHERE owners.full_name = 'Melody Pond';
+
+
+        SELECT animals.name, species.name AS species
+        FROM animals
+            JOIN species ON animals.species_id = species.id
+        WHERE species.name = 'Pokemon';
+
+
+        SELECT owners.full_name, animals.name AS animal_name
+        FROM owners
+            LEFT JOIN animals ON owners.id = animals.owner_id;
+
+
+        SELECT species.name AS species, COUNT(animals.id) AS animal_count
+        FROM species
+            LEFT JOIN animals ON species.id = animals.species_id
+        GROUP BY species.name;
+
+
+        SELECT animals.name AS digimon_name
+        FROM animals
+            JOIN species ON animals.species_id = species.id
+            JOIN owners ON animals.owner_id = owners.id
+        WHERE owners.full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
+
+
+        SELECT animals.name AS animal_name
+        FROM animals
+            JOIN owners ON animals.owner_id = owners.id
+        WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
+
+        SELECT owners.full_name, COUNT(animals.id) AS animal_count
+        FROM owners
+            LEFT JOIN animals ON owners.id = animals.owner_id
+        GROUP BY owners.full_name
+        ORDER BY animal_count DESC
+        LIMIT 1;
